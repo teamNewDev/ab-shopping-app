@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping list</title>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./assets/js/sweetalert.js"></script>
+    <link rel="stylesheet" href="./assets/css/sweetalert.css" />
+    <!-- <script src="https://unpkg.com/dexie/dist/dexie.js"></script> -->
+    <link rel="icon" href="./assets/images/icon-192.png" type="image/x-icon">
+    <link rel="manifest" href="./manifest.json">
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="top-header">
+        <div class="left">
+          <h1>Welcome</h1>
+          <p>Back</p>
+        </div>
+        <div class="right">
+          <img src="./assets/images/icon-384.png" alt="" class="img-fluid" />
+        </div>
+      </div>
+      <!-- <div class="shoping-categories">
+        <button class="btn">All</button>
+        <button class="btn">Important</button>
+        <button class="btn">Planned</button>
+      </div> -->
+      <div class="total text-white mt-5">
+        <div class="box">
+          <ion-icon name="card"></ion-icon> 
+          <h4 class="total-text"></h4>
+        </div>
+        <ion-icon name="trash-outline" class="delete-all-btn"></ion-icon>
+      </div>
+      <div class="shopping-body">
+        <div class="todos">
+         
+        </div>
+      </div>
+
+      <div class="navigation">
+        <ion-icon name="home-outline" class="home-btn"></ion-icon>
+        <ion-icon name="add" class="add-btn"></ion-icon>
+        <ion-icon name="help-outline" class="info-btn"></ion-icon>
+      </div>
+
+
+      <!-- add list form -->
+      <div class="addlist-modal">
+        <div class="list-cont addForm-cont">
+          <div class="line-cont">
+            <span class="line"></span>
+          </div>
+              <p>Add Shopping List</p>
+              <div class="f">
+                  <span>List Title</span>
+                  <input type="text"  placeholder="Title" class="input form-control title" />
+              </div>
+              <div class="flex-inp">
+                <input type="number"  placeholder="Quantity" class="input form-control quantity" />
+                <input type="number" placeholder="Price" class="input form-control price" />
+                </div>
+                    <br>
+                    <button class="btn btn-block submit-btn">
+                        Add List
+                    </button>
+            </div>
+          </div>
+      </div>
+
+      <!-- splash screen -->
+      <div class="splash-screen">
+        <img src="./assets/images/icon-384.png" alt="" class="img-fluid">
+      </div>
+    </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="./assets/js/dexie.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+
+    <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/Shopping-App/sw.js')
+  });
+}
+
+        var elem = document.body;
+      function requestFullScreen(element) {
+        // Supports most browsers and their versions.
+        var requestMethod =
+          element.requestFullScreen ||
+          element.webkitRequestFullScreen ||
+          element.mozRequestFullScreen ||
+          element.msRequestFullScreen;
+
+        if (requestMethod) {
+          // Native full screen.
+          requestMethod.call(element);
+        } else if (typeof window.ActiveXObject !== "undefined") {
+          // Older IE.
+          var wscript = new ActiveXObject("WScript.Shell");
+          if (wscript !== null) {
+            wscript.SendKeys("{F11}");
+          }
+        }
+      }
+
+      
+      requestFullScreen(elem);
+    </script>
+  </body>
+</html>
