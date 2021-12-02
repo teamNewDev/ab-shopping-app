@@ -1,5 +1,7 @@
 ### SHOPING APP ( PWA )
 
+<img src="https://raw.githubusercontent.com/teamNewDev/ab-shopping-app/main/prev.png">
+
 This was one of the application built using
 
 - Dexie.js : a wrapper for indexDB
