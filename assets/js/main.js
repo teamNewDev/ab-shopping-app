@@ -7,39 +7,6 @@ function $all(elm) {
     return document.querySelectorAll(elm)
 }
 
-function Alert() {
-
-    this.success = (text) => {
-        return Swal.fire({
-            title: 'Success!',
-            text: text,
-            icon: 'success',
-            confirmButtonText: 'Cool'
-        })
-    }
-
-    this.error = (text) => {
-        return Swal.fire({
-            title: 'Failure!',
-            text: text,
-            icon: 'error',
-            confirmButtonText: 'Try again later'
-        })
-    }
-
-    this.info = (text) => {
-        return Swal.fire({
-            imageUrl: 'https://avatars.githubusercontent.com/u/65370456?v=4',
-            imageHeight: 100,
-            imageWidth: 100,
-            imageAlt: 'Benrobo',
-            title: 'By Benrobo',
-            html: "<small>Hope you enjoy making use of this app which i belive you did, kindly follow me on github below 👇👇 😍😍<small>",
-            footer: '<a href="https://github.com/benrobo" class="text-primary" target="_blank" >@Benroboa>',
-        })
-    }
-}
-let alert = new Alert()
 
 const randId = () => {
     let text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJIKLMNOPQRSTUV1234567890".split("")
@@ -99,13 +66,19 @@ const SHOPPING_LIST = async () => {
     }
 
     function clearForm() {
-        titleInp.value === "";
+        titleInp.value == "";
         priceInp.value = "";
         qtyInp.value = "";
     }
 
     infoBtn.onclick = () => {
-        alert.info("<a>fbgfb</a>")
+        let ans = confirm("Did you enjoy using the app");
+        let url = "https://github.com/benrobo"
+        if (ans === false) {
+            alert("Ok no worries 👌")
+            return;
+        }
+        window.location = url;
     }
 
     // init db
@@ -124,7 +97,7 @@ const SHOPPING_LIST = async () => {
 
     submitBtn.onclick = () => {
         if (titleInp.value === "" || priceInp.value === "" || qtyInp.value === "") {
-            return alert.error("Inputs fields cant be empty")
+            return alert("Inputs fields cant be empty")
         }
         else if (priceInp.value <= 0 || qtyInp.value <= 0) {
             priceInp.value = 0
@@ -137,7 +110,7 @@ const SHOPPING_LIST = async () => {
             let completed = false;
             addDataToDb(newid, titleInp.value, priceInp.value, qtyInp.value, completed)
 
-            alert.success("List added successfully")
+            alert("List added successfully")
             addFormModal.style.display = "none"
             getData()
             populate()
@@ -163,6 +136,7 @@ const SHOPPING_LIST = async () => {
     calcTotal(list)
 
     async function populate() {
+        deleteAll.style.display = "flex"
         let list = await getData()
         if (list.length === 0) {
             todosCont.innerHTML = `
@@ -228,7 +202,7 @@ const SHOPPING_LIST = async () => {
                         console.log("Updated");
                     }
                     else {
-                        alert.error("Error, shopping list cant be completed")
+                        alert("Error, shopping list cant be completed")
                     }
                 });
             }
@@ -249,7 +223,7 @@ const SHOPPING_LIST = async () => {
 
                 submitBtn.onclick = () => {
                     if (titleInp.value === "" || priceInp.value === "" || qtyInp.value === "") {
-                        return alert.error("Inputs fields cant be empty")
+                        return alert("Inputs fields cant be empty")
                     }
                     else if (priceInp.value <= 0 || qtyInp.value <= 0) {
                         priceInp.value = 0
@@ -260,7 +234,7 @@ const SHOPPING_LIST = async () => {
 
                         addDataToDb(listId, titleInp.value, priceInp.value, qtyInp.value, completed)
 
-                        alert.success("List updated successfully")
+                        alert("List updated successfully")
                         addFormModal.style.display = "none"
                         getData()
                         populate()
@@ -276,7 +250,7 @@ const SHOPPING_LIST = async () => {
                 //         console.log("Updated");
                 //     }
                 //     else {
-                //         alert.error("Error, shopping list cant be completed")
+                //         alert("Error, shopping list cant be completed")
                 //     }
                 // });
             }
@@ -290,11 +264,11 @@ const SHOPPING_LIST = async () => {
 
                 await db.todos.where({ id: id }).delete().then(async () => {
                     let list = await getData()
-                    alert.success("List deleted successfully")
+                    alert("List deleted successfully")
                     populate()
                     calcTotal(list)
                 }).catch((err) => {
-                    alert.error("Failed to delete item")
+                    alert("Failed to delete item")
                 });
             }
         })
@@ -314,13 +288,13 @@ const SHOPPING_LIST = async () => {
                 console.log(data)
                 let list = await getData()
                 calcTotal(list)
-                alert.success("All items deleted successfully")
+                alert("All items deleted successfully")
                 populate()
             })
             .catch((err) => {
                 console.log(err)
                 if (err) {
-                    alert.error("Failed to delete all items")
+                    alert("Failed to delete all items")
                 }
             })
 
