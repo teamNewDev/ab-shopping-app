@@ -243,13 +243,13 @@ const SHOPPING_LIST_MAIN = async () => {
                         return;
                     }
                     else {
+                        submitBtn.innerHTML = "Add Item"
 
                         addDataToDb(listId, titleInp.value, priceInp.value, qtyInp.value, completed)
 
                         addFormModal.style.display = "none"
                         getData()
                         deleteAll.style.display = "flex"
-                        submitBtn.innerHTML = "Add Item"
                         populateDOMWithListItem()
                         calcTotal(list)
                     }
