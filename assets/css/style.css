@@ -334,13 +334,13 @@ body {
 .addlist-modal .list-cont {
   padding: 20px;
   width: 100%;
-  margin-bottom: 0px;
+  margin-bottom: -20px;
   position: absolute;
-  background: #000;
+  background: var(--dark1);
   border-radius: 20px 20px 0px 0px;
   bottom: -300px;
   /* top: 300px; */
-  height: 400px;
+  height: 450px;
   transition: 0.2s ease;
 }
 
