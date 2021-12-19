@@ -49,6 +49,7 @@ const SHOPPING_LIST_MAIN = async () => {
     }
     addFormModal.onclick = (e) => {
         if (e.target.classList.contains("addlist-modal")) {
+            submitBtn.innerHTML = "Add Item"
             clearForm()
             hideAddForm()
         }
