@@ -249,6 +249,7 @@ const SHOPPING_LIST_MAIN = async () => {
                         addFormModal.style.display = "none"
                         getData()
                         deleteAll.style.display = "flex"
+                        submitBtn.innerHTML = "Add Item"
                         populateDOMWithListItem()
                         calcTotal(list)
                     }
