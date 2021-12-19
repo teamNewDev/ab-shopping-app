@@ -1,3 +1,9 @@
+/* 
+  Title: Shopping List PWA App
+  Creator: Benrobo (Alumona Benaiah)
+  github: https://github.com/teamNewDev/ab-shopping-app 
+*/
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 
 :root {
@@ -107,7 +113,8 @@ body {
   width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .main-container .total .box {
@@ -124,13 +131,13 @@ body {
 .main-container .total ion-icon {
   padding: 10px;
   color: #00ff00;
-  background: rgba(3, 156, 3, 0.4);
+  background: rgba(3, 156, 3, 0.1);
   margin-right: 10px;
   border-radius: 5px;
 }
 .main-container .total .delete-all-btn {
-  color: red;
-  background: rgba(255, 0, 0, 0.4);
+  color: rgb(255, 0, 0);
+  background: rgba(255, 0, 0, 0.3);
   margin-left: 30px;
   display: none;
 }
@@ -260,15 +267,15 @@ body {
 }
 .main-container .shopping-body .todos .todo-card .more-info .completed {
   color: #0000ff;
-  background: rgba(0, 60, 255, 0.4);
+  background: rgba(0, 60, 255, 0.1);
 }
 .main-container .shopping-body .todos .todo-card .more-info .edit {
   color: #2bff00;
-  background: rgba(0, 255, 13, 0.4);
+  background: rgba(0, 255, 13, 0.1);
 }
 .main-container .shopping-body .todos .todo-card .more-info .delete {
   color: #ff0000;
-  background: rgba(255, 0, 0, 0.4);
+  background: rgba(255, 0, 0, 0.1);
 }
 
 /* addlist modal */
@@ -382,8 +389,9 @@ body {
   background: var(--dark2);
 }
 
-.navigation ion-icon {
+.navigation .icon {
   padding: 10px;
+  width: 50px;
   transform: scale(0.75);
   font-size: 25px;
   color: var(--y);
@@ -393,11 +401,11 @@ body {
   color: var(--y);
   transform: scale(0.98);
   /* margin-bottom: 30px; */
-  background: rgba(255, 238, 0, 0.5);
+  background: rgba(255, 238, 0, 0.2);
   border-radius: 30%;
 }
 
-.navigation ion-icon:hover {
+.navigation .icon:hover {
   background: rgba(255, 238, 0, 0.3);
 }
 

@@ -1,3 +1,7 @@
+// Title: Shopping List PWA App
+// Creator: Benrobo (Alumona Benaiah)
+// github: https://github.com/teamNewDev/ab-shopping-app 
+
 
 function $(elm) {
     return document.querySelector(elm)
@@ -17,7 +21,7 @@ const randId = () => {
     return id;
 }
 
-const SHOPPING_LIST = async () => {
+const SHOPPING_LIST_MAIN = async () => {
     let totalText = $(".total-text");
     let todosCont = $(".todos");
     let homeBtn = $(".home-btn");
@@ -33,8 +37,8 @@ const SHOPPING_LIST = async () => {
     let splashScreen = $(".splash-screen")
 
     // display splash screen on startup
+    // and remove splash screen when this time reaches
     setTimeout(() => {
-        // splashScreen.style.display = "none"
         splashScreen.classList.add("remove")
     }, 2500);
 
@@ -66,7 +70,7 @@ const SHOPPING_LIST = async () => {
     }
 
     function clearForm() {
-        titleInp.value == "";
+        titleInp.value = "";
         priceInp.value = "";
         qtyInp.value = "";
     }
@@ -110,10 +114,9 @@ const SHOPPING_LIST = async () => {
             let completed = false;
             addDataToDb(newid, titleInp.value, priceInp.value, qtyInp.value, completed)
 
-            alert("List added successfully")
             addFormModal.style.display = "none"
             getData()
-            populate()
+            populateDOMWithListItem()
             deleteAll.style.display = "flex"
 
         }
@@ -135,7 +138,7 @@ const SHOPPING_LIST = async () => {
     let list = await getData()
     calcTotal(list)
 
-    async function populate() {
+    async function populateDOMWithListItem() {
         deleteAll.style.display = "flex"
         let list = await getData()
         if (list.length === 0) {
@@ -198,7 +201,7 @@ const SHOPPING_LIST = async () => {
 
                 await db.todos.update(id, { completed: completed ? false : true }).then(function (updated) {
                     if (updated) {
-                        populate()
+                        populateDOMWithListItem()
                         console.log("Updated");
                     }
                     else {
@@ -216,6 +219,7 @@ const SHOPPING_LIST = async () => {
                 let { completed, price, title, quantity } = await db.todos.get(listId);
 
                 showAddForm()
+                submitBtn.innerHTML = "Edit Item"
 
                 titleInp.value = title;
                 priceInp.value = price;
@@ -223,7 +227,7 @@ const SHOPPING_LIST = async () => {
 
                 submitBtn.onclick = () => {
                     if (titleInp.value === "" || priceInp.value === "" || qtyInp.value === "") {
-                        return alert("Inputs fields cant be empty")
+                        return 
                     }
                     else if (priceInp.value <= 0 || qtyInp.value <= 0) {
                         priceInp.value = 0
@@ -234,10 +238,9 @@ const SHOPPING_LIST = async () => {
 
                         addDataToDb(listId, titleInp.value, priceInp.value, qtyInp.value, completed)
 
-                        alert("List updated successfully")
                         addFormModal.style.display = "none"
                         getData()
-                        populate()
+                        populateDOMWithListItem()
                         calcTotal(list)
                     }
                 }
@@ -246,7 +249,7 @@ const SHOPPING_LIST = async () => {
 
                 // await db.todos.update(id, { completed: completed ? false : true }).then(function (updated) {
                 //     if (updated) {
-                //         populate()
+                //         populateDOMWithListItem()
                 //         console.log("Updated");
                 //     }
                 //     else {
@@ -264,8 +267,7 @@ const SHOPPING_LIST = async () => {
 
                 await db.todos.where({ id: id }).delete().then(async () => {
                     let list = await getData()
-                    alert("List deleted successfully")
-                    populate()
+                    populateDOMWithListItem()
                     calcTotal(list)
                 }).catch((err) => {
                     alert("Failed to delete item")
@@ -275,7 +277,7 @@ const SHOPPING_LIST = async () => {
 
         calcTotal(list)
     }
-    populate()
+    populateDOMWithListItem()
 
     // delete all items
     deleteAll.onclick = async () => {
@@ -288,8 +290,7 @@ const SHOPPING_LIST = async () => {
                 console.log(data)
                 let list = await getData()
                 calcTotal(list)
-                alert("All items deleted successfully")
-                populate()
+                populateDOMWithListItem()
             })
             .catch((err) => {
                 console.log(err)
@@ -312,4 +313,4 @@ const SHOPPING_LIST = async () => {
 
 }
 
-SHOPPING_LIST()
+SHOPPING_LIST_MAIN()
