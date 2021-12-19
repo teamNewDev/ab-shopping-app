@@ -128,14 +128,18 @@ body {
   left: 0px;
 }
 
-.main-container .total ion-icon {
-  padding: 10px;
+.main-container .total .box-icon {
+  width: 35px;
+  padding: 5px;
   color: #00ff00;
   background: rgba(3, 156, 3, 0.1);
   margin-right: 10px;
   border-radius: 5px;
 }
 .main-container .total .delete-all-btn {
+  width: 30px;
+  padding: 5px;
+  border-radius: 5px;
   color: rgb(255, 0, 0);
   background: rgba(255, 0, 0, 0.3);
   margin-left: 30px;
@@ -206,8 +210,8 @@ body {
   padding: 0px;
 }
 
-.main-container .shopping-body .todos .todo-card .bottom ion-icon {
-  font-size: 20px;
+.main-container .shopping-body .todos .todo-card .bottom .btm-icon {
+  width: 30px;
   padding: 5px;
   color: #fff;
   margin-right: 10px;
@@ -225,8 +229,9 @@ body {
   background: rgba(3, 31, 156, 0.4);
 }
 
-.main-container .shopping-body .todos .todo-card .more-info-icon {
+.main-container .shopping-body .todos .todo-card .icon {
   position: absolute;
+  width: 30px;
   right: 10px;
   top: 20px;
   color: var(--light2);
@@ -239,12 +244,11 @@ body {
   position: absolute;
   top: 0px;
   right: 45px;
-  width: 60px;
-  height: 0px;
-  padding: 2px;
+  height: auto;
+  padding: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
   background: var(--dark3);
   border-radius: 5px;
@@ -255,15 +259,21 @@ body {
   visibility: visible;
   height: 150px;
   z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
 }
-.main-container .shopping-body .todos .todo-card .more-info ion-icon {
-  padding: 10px;
-  margin: 0px;
+
+.main-container .shopping-body .todos .todo-card .more-info .icons {
+  padding: 5px;
+  width:35px;
   transform: scale(0.75);
-  font-size: 25px;
-  color: #fff;
+  color: red;
+  /* color: #fff; */
   border-radius: 5px;
   cursor: pointer;
+  margin: 0px auto;
 }
 .main-container .shopping-body .todos .todo-card .more-info .completed {
   color: #0000ff;

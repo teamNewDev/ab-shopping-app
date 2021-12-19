@@ -24,7 +24,6 @@ const randId = () => {
 const SHOPPING_LIST_MAIN = async () => {
     let totalText = $(".total-text");
     let todosCont = $(".todos");
-    let homeBtn = $(".home-btn");
     let infoBtn = $(".info-btn");
     let addForm = $(".addForm-cont");
     let addBtn = $(".add-btn");
@@ -152,27 +151,37 @@ const SHOPPING_LIST_MAIN = async () => {
             // console.log(todo)
             todosCont.innerHTML += `
             <div class="todo-card ${todo.completed ? 'completed' : 'notcompleted'}" data-id="${todo.id}">
-            <p class="name">${todo.title}</p>
-            <div class="bottom">
-                <ion-icon name="bar-chart" class="qty-icon"></ion-icon>
+                <p class="name">${todo.title}</p>
+                <div class="bottom">
+                <svg xmlns="http://www.w3.org/2000/svg" class="qty-icon btm-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+                </svg>
                 <span class="qty">${todo.quantity}</span>
-                <ion-icon name="card" class="cash-icon"></ion-icon>
-                <span class="qty">$${todo.price}</span>
-            </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="cash-icon btm-icon" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
+                    <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd" />
+                </svg>
+                    <span class="qty">$${todo.price}</span>
+                </div>
+        
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="more-info-icon icon"
+                data-id="${todo.id}" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" class="more-info-icon" />
+                </svg>
     
-            <ion-icon
-                name="ellipsis-vertical"
-                class="more-info-icon"
-                data-id="${todo.id}"
-            ></ion-icon>
-    
-            <div class="more-info">
-                <ion-icon name="checkmark-circle" class="completed" data-id="${todo.id}"></ion-icon>
-    
-                <ion-icon name="create" class="edit" data-id="${todo.id}"></ion-icon>
-    
-                <ion-icon name="trash" class="delete" data-id="${todo.id}"></ion-icon>
-            </div>
+                <div class="more-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="completed icons" data-id="${todo.id}" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" data-id="${todo.id}"/>
+                    </svg>  
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="edit icons" data-id="${todo.id}">
+                        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" data-id="${todo.id}"/>
+                        <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" data-id="${todo.id}"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="delete icons" data-id="${todo.id}" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" data-id="${todo.id}"/>
+                    </svg>
+                </div>
             </div>
             `
         })
@@ -197,12 +206,10 @@ const SHOPPING_LIST_MAIN = async () => {
                 let id = e.target.getAttribute("data-id");
                 let { completed } = await db.todos.get(id);
 
-                // console.log(completed)
-
                 await db.todos.update(id, { completed: completed ? false : true }).then(function (updated) {
                     if (updated) {
+                        deleteAll.style.display = "flex"
                         populateDOMWithListItem()
-                        console.log("Updated");
                     }
                     else {
                         alert("Error, shopping list cant be completed")
@@ -227,7 +234,8 @@ const SHOPPING_LIST_MAIN = async () => {
 
                 submitBtn.onclick = () => {
                     if (titleInp.value === "" || priceInp.value === "" || qtyInp.value === "") {
-                        return 
+                        alert("Input field is empty")
+                        return
                     }
                     else if (priceInp.value <= 0 || qtyInp.value <= 0) {
                         priceInp.value = 0
@@ -240,6 +248,7 @@ const SHOPPING_LIST_MAIN = async () => {
 
                         addFormModal.style.display = "none"
                         getData()
+                        deleteAll.style.display = "flex"
                         populateDOMWithListItem()
                         calcTotal(list)
                     }
@@ -267,6 +276,7 @@ const SHOPPING_LIST_MAIN = async () => {
 
                 await db.todos.where({ id: id }).delete().then(async () => {
                     let list = await getData()
+                    deleteAll.style.display = "flex"
                     populateDOMWithListItem()
                     calcTotal(list)
                 }).catch((err) => {
