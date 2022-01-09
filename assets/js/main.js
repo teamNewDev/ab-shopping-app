@@ -75,16 +75,6 @@ const SHOPPING_LIST_MAIN = async () => {
         qtyInp.value = "";
     }
 
-    infoBtn.onclick = () => {
-        let ans = confirm("Did you enjoy using the app");
-        let url = "https://github.com/benrobo"
-        if (ans === false) {
-            alert("Ok no worries 👌")
-            return;
-        }
-        window.location = url;
-    }
-
     // init db
     var db = new Dexie("ShoppingList")
     // create table

@@ -393,7 +393,7 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 10px;
   border-radius: 30px 30px 0px 0px;
   background: var(--dark2);
@@ -411,8 +411,10 @@ body {
   color: var(--y);
   transform: scale(0.98);
   /* margin-bottom: 30px; */
-  background: rgba(255, 238, 0, 0.2);
+  background: #ffee0033;
   border-radius: 30%;
+  position: relative;
+  bottom: 30px;
 }
 
 .navigation .icon:hover {
