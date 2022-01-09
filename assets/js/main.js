@@ -144,34 +144,18 @@ const SHOPPING_LIST_MAIN = async () => {
             <div class="todo-card ${todo.completed ? 'completed' : 'notcompleted'}" data-id="${todo.id}">
                 <p class="name">${todo.title}</p>
                 <div class="bottom">
-                <svg xmlns="http://www.w3.org/2000/svg" class="qty-icon btm-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
-                </svg>
-                <span class="qty">${todo.quantity}</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="cash-icon btm-icon" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                    <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd" />
-                </svg>
+                    <img src="./assets/icon/graph.png" class="qty-icon btm-icon" />
+                    <span class="qty">${todo.quantity}</span>
+                        <img src="./assets/icon/wallet.png" class="cash-icon btm-icon" />
                     <span class="qty">$${todo.price}</span>
                 </div>
         
-
-                <svg xmlns="http://www.w3.org/2000/svg" class="more-info-icon icon"
-                data-id="${todo.id}" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" class="more-info-icon" />
-                </svg>
+                <img src="./assets/icon/more.png" class="more-info-icon icon" data-id="${todo.id}" />
     
                 <div class="more-info">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="completed icons" data-id="${todo.id}" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" data-id="${todo.id}"/>
-                    </svg>  
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="edit icons" data-id="${todo.id}">
-                        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" data-id="${todo.id}"/>
-                        <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" data-id="${todo.id}"/>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="delete icons" data-id="${todo.id}" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" data-id="${todo.id}"/>
-                    </svg>
+                    <img src="./assets/icon/check.png" class="completed icons" data-id="${todo.id}"/>
+                    <img src="./assets/icon/edit.png" class="edit icons" data-id="${todo.id}"/>
+                    <img src="./assets/icon/delete.png" class="delete icons" data-id="${todo.id}"/>
                 </div>
             </div>
             `
@@ -182,7 +166,6 @@ const SHOPPING_LIST_MAIN = async () => {
         let completed = $all(".completed")
         let editBtn = $all(".edit")
         let deleteBtn = $all(".delete")
-
 
         moreIcon.forEach((more) => {
             more.onclick = (e) => {
